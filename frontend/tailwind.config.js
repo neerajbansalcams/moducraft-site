@@ -4,10 +4,19 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
     './middleware.ts',
+    './data/**/*.{js,ts}',
   ],
   theme: {
     extend: {
       colors: {
+        // v2 Design System
+        'v2-bg': '#F5F0EB',
+        'v2-surface': '#FFFFFF',
+        'v2-text': '#1A1A18',
+        'v2-muted': '#6B6B5E',
+        'v2-accent': '#8B6F47',
+        'v2-border': '#E0D9CF',
+
         // Premium Architectural Palette
         'charcoal-black': '#1a1a1a',
         'stone-gray': '#4a4a4a',
@@ -16,13 +25,13 @@ module.exports = {
         'natural-oak': '#a89968',
         'copper-accent': '#b8884d',
         'deep-forest': '#2d4a3f',
-        
+
         // Semantic Colors (Premium)
         success: '#4a9d6f',
         warning: '#d89d4a',
         error: '#c65d5d',
         info: '#5a8fa0',
-        
+
         // Legacy colors (kept for compatibility)
         moduwood: '#8B7355',
         'moduwood-dark': '#6F5C47',
@@ -31,6 +40,9 @@ module.exports = {
         parchment: '#F5F3F0',
       },
       fontFamily: {
+        'v2-heading': ['Cormorant Garamond', 'Georgia', 'serif'],
+        'v2-body': ['Inter', 'system-ui', 'sans-serif'],
+        'v2-mono': ['JetBrains Mono', 'Courier New', 'monospace'],
         playfair: ['Playfair Display', 'serif'],
         sora: ['Sora', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
