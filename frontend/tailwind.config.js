@@ -8,34 +8,43 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Premium Architectural Palette
+        'charcoal-black': '#1a1a1a',
+        'stone-gray': '#4a4a4a',
+        'marble-white': '#f8f7f5',
+        'warm-beige': '#e8e3db',
+        'natural-oak': '#a89968',
+        'copper-accent': '#b8884d',
+        'deep-forest': '#2d4a3f',
+        
+        // Semantic Colors (Premium)
+        success: '#4a9d6f',
+        warning: '#d89d4a',
+        error: '#c65d5d',
+        info: '#5a8fa0',
+        
+        // Legacy colors (kept for compatibility)
         moduwood: '#8B7355',
         'moduwood-dark': '#6F5C47',
-        'moduwood-darker': '#5C4A37',
         sandstone: '#D4A574',
-        'sandstone-dark': '#C9985F',
         slate: '#2C3E50',
         parchment: '#F5F3F0',
-        'parchment-light': '#F9F8F6',
-        charcoal: '#333333',
-        success: '#27AE60',
-        warning: '#F39C12',
-        error: '#E74C3C',
-        info: '#3498DB',
       },
       fontFamily: {
         playfair: ['Playfair Display', 'serif'],
         sora: ['Sora', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
+        lora: ['Lora', 'serif'],
         mono: ['IBM Plex Mono', 'monospace'],
       },
       spacing: {
         xs: '4px',
         sm: '8px',
         md: '16px',
-        lg: '24px',
-        xl: '32px',
-        '2xl': '48px',
-        '3xl': '64px',
+        lg: '32px',
+        xl: '48px',
+        '2xl': '64px',
+        '3xl': '96px',
       },
       boxShadow: {
         sm: '0px 4px 12px rgba(0,0,0,0.08)',
