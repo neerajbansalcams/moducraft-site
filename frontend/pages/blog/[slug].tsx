@@ -1,1 +1,167 @@
-import React from 'react';\nimport Layout from '@/components/Layout';\nimport Link from 'next/link';\nimport { Calendar, User, ArrowLeft, Share2 } from 'lucide-react';\n\nconst blogPostData = {\n  1: {\n    title: '5 Space-Saving Modular Furniture Solutions for Small Homes',\n    author: 'Priya Sharma',\n    date: 'March 15, 2026',\n    readTime: '5 min read',\n    category: 'Design',\n    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=600&fit=crop',\n    content: `\n      <h2>Making the Most of Limited Space</h2>\n      <p>\n        Living in a small apartment or compact home doesn't mean you have to compromise on style, comfort, or functionality. \n        With the right modular furniture choices, you can transform even the tiniest spaces into beautiful, efficient living areas.\n      </p>\n\n      <h3>1. Wall-Mounted Storage Systems</h3>\n      <p>\n        One of the most effective ways to save floor space is to go vertical. Wall-mounted modular shelving systems can hold \n        books, decor, and everyday items without taking up valuable floor space. These systems are highly customizable and can \n        be arranged to fit your room's unique layout.\n      </p>\n\n      <h3>2. Modular Sofas with Hidden Storage</h3>\n      <p>\n        A sofa that doubles as storage is perfect for small homes. Many modular sofas feature hidden compartments under the \n        cushions, providing convenient storage for blankets, pillows, or seasonal items. You get all the comfort without the \n        clutter.\n      </p>\n\n      <h3>3. Multi-Functional Coffee Tables</h3>\n      <p>\n        Coffee tables with built-in storage, lift-top surfaces, or nesting designs are game-changers for small spaces. These \n        pieces serve multiple purposes and help keep your living area organized and uncluttered.\n      </p>\n\n      <h3>4. Custom Closet Systems</h3>\n      <p>\n        Maximize your bedroom closet with modular shelving, hanging systems, and drawer organizers. A well-organized closet \n        makes your entire room feel larger and more peaceful.\n      </p>\n\n      <h3>5. Convertible Dining Solutions</h3>\n      <p>\n        A dining table that expands when needed or folds away when it's not in use is perfect for small homes. Some modular \n        designs even convert into work desks, giving you flexible functionality.\n      </p>\n\n      <h2>Key Takeaways</h2>\n      <ul>\n        <li>Think vertical to maximize storage without consuming floor space</li>\n        <li>Choose multifunctional pieces that serve multiple purposes</li>\n        <li>Invest in quality modular systems designed for small spaces</li>\n        <li>Keep color and design cohesive for a sense of spaciousness</li>\n        <li>Don't overcrowd—modular doesn't mean maximizing every inch</li>\n      </ul>\n\n      <p>\n        The beauty of modular furniture is its flexibility. As your life changes, your furniture can change with you. Whether \n        you're starting your first job in a studio apartment or downsizing to a cozy home, modular solutions adapt to your needs.\n      </p>\n    `,\n    relatedPosts: [2, 3, 4],\n  },\n  2: {\n    title: 'Understanding Modular Design: A Guide for Architects',\n    author: 'Raj Patel',\n    date: 'March 10, 2026',\n    readTime: '8 min read',\n    category: 'Architecture',\n    image: 'https://images.unsplash.com/photo-1540932239986-310128078ceb?w=1200&h=600&fit=crop',\n    content: `\n      <h2>For the Design Professional</h2>\n      <p>\n        As an architect or interior designer, you understand the importance of flexibility, efficiency, and creating spaces \n        that adapt to your clients' needs. Modular furniture is an essential tool in your design arsenal.\n      </p>\n\n      <h3>What Makes Furniture \"Modular\"?</h3>\n      <p>\n        Modular furniture consists of standardized units that can be combined in various configurations. Each module is \n        independently functional but can also work seamlessly with other modules. This approach offers unprecedented flexibility \n        in interior design.\n      </p>\n\n      <h3>Design Principles for Modular Spaces</h3>\n      <p>\n        When specifying modular furniture for a project, consider:\n        <strong>Scale and Proportion:</strong> Ensure modules align with standard architectural dimensions and room proportions.\n        <strong>Repeatability:</strong> Design with components that can be easily replicated and expanded.\n        <strong>Quality Connections:</strong> Specify systems with secure, invisible connections for a seamless appearance.\n      </p>\n\n      <h3>Advantages for Architects</h3>\n      <ul>\n        <li>Quick adaptation to project requirements</li>\n        <li>Cost-effective customization</li>\n        <li>Future-proof design that can evolve with client needs</li>\n        <li>Reduced waste through standardized manufacturing</li>\n        <li>Improved client satisfaction through flexibility</li>\n      </ul>\n\n      <h2>Specification Best Practices</h2>\n      <p>\n        When working with modular furniture manufacturers like Moducraft, ensure clear communication about:\n      </p>\n      <ul>\n        <li>Exact dimensional requirements</li>\n        <li>Material and finish specifications</li>\n        <li>Connection details and load-bearing requirements</li>\n        <li>Finish deadlines and installation logistics</li>\n        <li>Warranty and maintenance protocols</li>\n      </ul>\n    `,\n    relatedPosts: [1, 3, 5],\n  },\n};\n\ninterface BlogPostProps {\n  params: {\n    slug: string;\n  };\n}\n\nfunction getAllBlogPostIds() {\n  return Object.keys(blogPostData).map((id) => ({\n    params: { slug: id },\n  }));\n}\n\nfunction getBlogPostData(id: string) {\n  return blogPostData[id as keyof typeof blogPostData] || null;\n}\n\nexport default function BlogPost({ params }: BlogPostProps) {\n  const post = getBlogPostData(params.slug);\n\n  if (!post) {\n    return (\n      <Layout title=\"Post Not Found\" description=\"This blog post could not be found.\">\n        <div className=\"min-h-screen flex items-center justify-center\">\n          <div className=\"text-center\">\n            <h1 className=\"font-playfair text-4xl font-bold text-slate mb-4\">Post Not Found</h1>\n            <p className=\"text-gray-600 mb-8\">The article you're looking for doesn't exist.</p>\n            <Link href=\"/blog\" className=\"inline-block px-6 py-3 bg-moduwood text-white font-bold rounded-sm hover:bg-moduwood-dark\">\n              Back to Blog\n            </Link>\n          </div>\n        </div>\n      </Layout>\n    );\n  }\n\n  return (\n    <Layout title={`${post.title} | Moducraft Blog`} description={post.title}>\n      {/* Hero with Back Button */}\n      <div className=\"bg-gradient-to-b from-slate to-slate-dark text-white\">\n        <div className=\"max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12\">\n          <Link href=\"/blog\" className=\"inline-flex items-center gap-2 mb-6 hover:text-sandstone transition-colors\">\n            <ArrowLeft className=\"w-4 h-4\" />\n            Back to Blog\n          </Link>\n        </div>\n      </div>\n\n      {/* Article Header */}\n      <section className=\"bg-white border-b border-gray-200 py-8 md:py-12\">\n        <div className=\"max-w-3xl mx-auto px-4 md:px-6 lg:px-8\">\n          {/* Category */}\n          <div className=\"inline-block px-3 py-1 bg-moduwood/10 text-moduwood text-xs font-bold rounded-full mb-4\">\n            {post.category}\n          </div>\n\n          {/* Title */}\n          <h1 className=\"font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-slate mb-6\">\n            {post.title}\n          </h1>\n\n          {/* Meta Information */}\n          <div className=\"flex flex-col md:flex-row gap-6 md:gap-8 text-sm text-gray-600 pb-6 border-b border-gray-200\">\n            <div className=\"flex items-center gap-2\">\n              <User className=\"w-4 h-4\" />\n              <span>{post.author}</span>\n            </div>\n            <div className=\"flex items-center gap-2\">\n              <Calendar className=\"w-4 h-4\" />\n              <span>{post.date}</span>\n            </div>\n            <span>{post.readTime}</span>\n          </div>\n\n          {/* Share Buttons */}\n          <div className=\"flex items-center gap-3 mt-6\">\n            <span className=\"text-sm font-semibold text-gray-700\">Share:</span>\n            <button className=\"p-2 text-gray-600 hover:text-moduwood transition-colors\">\n              <Share2 className=\"w-4 h-4\" />\n            </button>\n          </div>\n        </div>\n      </section>\n\n      {/* Featured Image */}\n      <section className=\"bg-gray-200\">\n        <div className=\"max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12\">\n          <div className=\"h-96 bg-gray-300 rounded-md overflow-hidden\">\n            <img src={post.image} alt={post.title} className=\"w-full h-full object-cover\" />\n          </div>\n        </div>\n      </section>\n\n      {/* Article Content */}\n      <section className=\"py-12 md:py-16 bg-white\">\n        <div className=\"max-w-3xl mx-auto px-4 md:px-6 lg:px-8\">\n          <article\n            className=\"prose prose-lg text-gray-700 space-y-6\"\n            dangerouslySetInnerHTML={{\n              __html: post.content,\n            }}\n          />\n        </div>\n      </section>\n\n      {/* Related Posts */}\n      {post.relatedPosts && post.relatedPosts.length > 0 && (\n        <section className=\"py-16 md:py-20 bg-parchment\">\n          <div className=\"max-w-6xl mx-auto px-4 md:px-6 lg:px-8\">\n            <h2 className=\"font-playfair text-3xl font-bold text-slate mb-12\">Related Articles</h2>\n            <div className=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n              {post.relatedPosts.map((postId) => {\n                const relatedPost = blogPostData[postId as keyof typeof blogPostData];\n                return (\n                  <Link\n                    key={postId}\n                    href={`/blog/${postId}`}\n                    className=\"group bg-white rounded-md overflow-hidden shadow-sm hover:shadow-md transition-shadow\"\n                  >\n                    <div className=\"h-40 bg-gray-200 overflow-hidden\">\n                      <img\n                        src={relatedPost.image}\n                        alt={relatedPost.title}\n                        className=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-300\"\n                      />\n                    </div>\n                    <div className=\"p-4\">\n                      <div className=\"inline-block px-2 py-1 bg-moduwood/10 text-moduwood text-xs font-bold rounded mb-2\">\n                        {relatedPost.category}\n                      </div>\n                      <h3 className=\"font-sora text-base font-bold text-slate line-clamp-2 mb-2\">\n                        {relatedPost.title}\n                      </h3>\n                      <p className=\"text-xs text-gray-500\">{relatedPost.date}</p>\n                    </div>\n                  </Link>\n                );\n              })}\n            </div>\n          </div>\n        </section>\n      )}\n\n      {/* Newsletter Section */}\n      <section className=\"py-16 md:py-20 bg-slate text-white\">\n        <div className=\"max-w-2xl mx-auto px-4 md:px-6 lg:px-8 text-center\">\n          <h2 className=\"font-playfair text-3xl md:text-4xl font-bold mb-4\">Enjoyed This Article?</h2>\n          <p className=\"text-lg text-gray-100 mb-8\">\n            Subscribe to our newsletter for more design insights and tips delivered weekly.\n          </p>\n          <form className=\"flex flex-col sm:flex-row gap-3\">\n            <input\n              type=\"email\"\n              placeholder=\"Enter your email\"\n              className=\"flex-1 px-4 py-3 rounded-sm text-charcoal focus:outline-none\"\n            />\n            <button\n              type=\"submit\"\n              className=\"px-8 py-3 bg-moduwood text-white font-bold rounded-sm hover:bg-moduwood-dark transition-colors\"\n            >\n              Subscribe\n            </button>\n          </form>\n        </div>\n      </section>\n    </Layout>\n  );\n}\n\nexport async function getStaticProps() {\n  return {\n    props: {},\n    revalidate: 3600,\n  };\n}\n\nexport async function getStaticPaths() {\n  const paths = getAllBlogPostIds();\n  return {\n    paths,\n    fallback: 'blocking',\n  };\n}\n
+import React from 'react';
+import Layout from '@/components/Layout';
+import Link from 'next/link';
+import { Calendar, User, ArrowLeft, Share2 } from 'lucide-react';
+
+const blogPostData = {
+  1: {
+    title: '5 Space-Saving Modular Furniture Solutions for Small Homes',
+    author: 'Priya Sharma',
+    date: 'March 15, 2026',
+    readTime: '5 min read',
+    category: 'Design',
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=600&fit=crop',
+    content: '<h2>Making the Most of Limited Space</h2><p>Living in a small apartment means choosing smart furniture solutions.</p>',
+    relatedPosts: [2],
+  },
+  2: {
+    title: 'Understanding Modular Design: A Guide for Architects',
+    author: 'Raj Patel',
+    date: 'March 10, 2026',
+    readTime: '8 min read',
+    category: 'Architecture',
+    image: 'https://images.unsplash.com/photo-1540932239986-310128078ceb?w=1200&h=600&fit=crop',
+    content: '<h2>For the Design Professional</h2><p>Modular furniture is an essential tool in your design arsenal.</p>',
+    relatedPosts: [1],
+  },
+};
+
+interface BlogPostProps {
+  slug: string;
+}
+
+function getBlogPostData(id: string) {
+  const postId = parseInt(id, 10) as 1 | 2;
+  return blogPostData[postId] || null;
+}
+
+export default function BlogPost({ slug }: BlogPostProps) {
+  const post = getBlogPostData(slug);
+
+  if (!post) {
+    return (
+      <Layout title="Post Not Found" description="This blog post could not be found.">
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="font-playfair text-4xl font-bold text-slate mb-4">Post Not Found</h1>
+            <p className="text-gray-600 mb-8">The article you&apos;re looking for does not exist.</p>
+            <Link href="/blog" className="inline-block px-6 py-3 bg-moduwood text-white font-bold rounded-sm hover:bg-moduwood-dark">
+              Back to Blog
+            </Link>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  return (
+    <Layout title={`${post.title} | Moducraft Blog`} description={post.title}>
+      {/* Hero with Back Button */}
+      <div className="bg-gradient-to-b from-slate to-slate-dark text-white">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12">
+          <Link href="/blog" className="inline-flex items-center gap-2 mb-6 hover:text-sandstone transition-colors">
+            <ArrowLeft className="w-4 h-4" />
+            Back to Blog
+          </Link>
+        </div>
+      </div>
+
+      {/* Article Header */}
+      <section className="bg-white border-b border-gray-200 py-8 md:py-12">
+        <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
+          {/* Category */}
+          <div className="inline-block px-3 py-1 bg-moduwood/10 text-moduwood text-xs font-bold rounded-full mb-4">
+            {post.category}
+          </div>
+
+          {/* Title */}
+          <h1 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-slate mb-6">
+            {post.title}
+          </h1>
+
+          {/* Meta Information */}
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8 text-sm text-gray-600 pb-6 border-b border-gray-200">
+            <div className="flex items-center gap-2">
+              <User className="w-4 h-4" />
+              <span>{post.author}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4" />
+              <span>{post.date}</span>
+            </div>
+            <span>{post.readTime}</span>
+          </div>
+
+          {/* Share Buttons */}
+          <div className="flex items-center gap-3 mt-6">
+            <span className="text-sm font-semibold text-gray-700">Share:</span>
+            <button className="p-2 text-gray-600 hover:text-moduwood transition-colors">
+              <Share2 className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Image */}
+      <section className="bg-gray-200">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12">
+          <div className="h-96 bg-gray-300 rounded-md overflow-hidden">
+            <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+          </div>
+        </div>
+      </section>
+
+      {/* Article Content */}
+      <section className="py-12 md:py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
+          <article
+            className="prose prose-lg text-gray-700 space-y-6"
+            dangerouslySetInnerHTML={{
+              __html: post.content,
+            }}
+          />
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="py-16 md:py-20 bg-slate text-white">
+        <div className="max-w-2xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+          <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4">Enjoyed This Article?</h2>
+          <p className="text-lg text-gray-100 mb-8">
+            Subscribe to our newsletter for more design insights and tips delivered weekly.
+          </p>
+          <form className="flex flex-col sm:flex-row gap-3">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 px-4 py-3 rounded-sm text-charcoal focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="px-8 py-3 bg-moduwood text-white font-bold rounded-sm hover:bg-moduwood-dark transition-colors"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </section>
+    </Layout>
+  );
+}
+
+export async function getStaticProps({ params }: { params: { slug: string } }) {
+  return {
+    props: {
+      slug: params.slug,
+    },
+    revalidate: 3600,
+  };
+}
+
+export async function getStaticPaths() {
+  const paths = [{ params: { slug: '1' } }, { params: { slug: '2' } }];
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+}
