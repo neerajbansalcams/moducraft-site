@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Sora:wght@400;600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-inter text-charcoal bg-parchment;
+}
+
+/* Typography */
+h1 {
+  @apply font-playfair font-bold text-5xl text-slate my-md;
+}
+
+h2 {
+  @apply font-sora font-semibold text-3xl text-slate my-lg;
+}
+
+h3 {
+  @apply font-sora font-semibold text-2xl text-slate my-md;
+}
+
+p {
+  @apply leading-relaxed;
+}
+
+a {
+  @apply text-moduwood underline hover:text-moduwood-dark transition-colors;
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply px-lg py-md bg-moduwood text-white font-bold rounded-sm hover:bg-moduwood-dark focus:outline-none focus:ring-2 focus:ring-moduwood focus:ring-offset-2 transition-all duration-200;
+}
+
+.btn-secondary {
+  @apply px-lg py-md bg-sandstone text-slate font-bold rounded-sm hover:bg-sandstone-dark focus:outline-none focus:ring-2 focus:ring-sandstone focus:ring-offset-2 transition-all duration-200;
+}
+
+.btn-outline {
+  @apply px-lg py-md border-2 border-moduwood text-moduwood font-bold rounded-sm hover:bg-parchment-light focus:outline-none focus:ring-2 focus:ring-moduwood focus:ring-offset-2 transition-all duration-200;
+}
+
+/* Card Styles */
+.card {
+  @apply bg-white rounded-md shadow-sm hover:shadow-md p-lg transition-shadow duration-200;
+}
+
+/* Form Styles */
+input, textarea, select {
+  @apply border border-gray-300 rounded-sm px-md py-sm font-inter text-charcoal focus:outline-none focus:ring-2 focus:ring-moduwood focus:border-transparent transition-all duration-200;
+}
+
+input:disabled, textarea:disabled, select:disabled {
+  @apply bg-gray-100 cursor-not-allowed;
+}
+
+/* Grid Layout */
+.container {
+  @apply max-w-7xl mx-auto;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
