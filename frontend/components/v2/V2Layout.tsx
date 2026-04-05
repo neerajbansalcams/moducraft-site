@@ -76,7 +76,7 @@ export default function V2Layout({ children }: V2LayoutProps) {
         {/* Mobile overlay */}
         {menuOpen && (
           <div
-            className="fixed inset-0 z-40 bg-[#1A1A18]/80 flex items-center justify-center"
+            className="fixed inset-0 z-40 bg-v2-text/80 flex items-center justify-center"
             onClick={() => setMenuOpen(false)}
           >
             <div className="flex flex-col items-center gap-8" onClick={(e) => e.stopPropagation()}>
@@ -84,7 +84,7 @@ export default function V2Layout({ children }: V2LayoutProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-2xl text-white font-v2-heading hover:text-v2-accent transition-colors"
+                  className="text-2xl text-v2-surface font-v2-heading hover:text-v2-accent transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
@@ -98,34 +98,34 @@ export default function V2Layout({ children }: V2LayoutProps) {
         <main className="pt-16">{children}</main>
 
         {/* Footer */}
-        <footer className="bg-v2-text text-white mt-24">
+        <footer className="bg-v2-text text-v2-surface mt-24">
           <div className="max-w-[1280px] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
               <p className="font-v2-heading text-2xl font-light mb-2">ModuCraft</p>
-              <p className="text-sm text-white/60 leading-relaxed">
+              <p className="text-sm text-v2-surface/60 leading-relaxed">
                 by Jai Shri Ram Furniture<br />
                 VKIA, Jaipur — Est. July 2025
               </p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-widest text-white/40 mb-3">Heritage</p>
-              <p className="text-sm text-white/60 leading-relaxed">
+              <p className="text-xs uppercase tracking-widest text-v2-surface/40 mb-3">Heritage</p>
+              <p className="text-sm text-v2-surface/60 leading-relaxed">
                 A unit of Shri Ram Timber & Plywood<br />
                 Gandhi Path, Jaipur
               </p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-widest text-white/40 mb-3">Connect</p>
+              <p className="text-xs uppercase tracking-widest text-v2-surface/40 mb-3">Connect</p>
               <a
                 href="https://wa.me/91XXXXXXXXXX" // TODO: Replace XXXXXXXXXX with real ModuCraft WhatsApp number, e.g. 919876543210
-                className="inline-block text-sm text-v2-accent hover:text-white transition-colors"
+                className="inline-block text-sm text-v2-accent hover:text-v2-surface transition-colors"
               >
                 WhatsApp Us →
               </a>
             </div>
           </div>
-          <div className="border-t border-white/10 max-w-[1280px] mx-auto px-8 py-4">
-            <p className="text-xs text-white/30">© 2025 ModuCraft. All rights reserved.</p>
+          <div className="border-t border-v2-surface/10 max-w-[1280px] mx-auto px-8 py-4">
+            <p className="text-xs text-v2-surface/30">© 2025 ModuCraft. All rights reserved.</p>
           </div>
         </footer>
       </div>
