@@ -48,7 +48,7 @@ function MaterialCard({
           <div className="mt-4 pt-4 border-t border-v2-border">
             <table className="w-full text-sm">
               <tbody>
-                {material.properties.map((prop) => (
+                {(material.properties ?? []).map((prop) => (
                   <tr key={prop.label} className="border-b border-v2-border/50 last:border-0">
                     <td className="py-2 pr-4 font-v2-mono text-xs text-v2-muted w-1/2">{prop.label}</td>
                     <td className="py-2 text-v2-text text-xs">{prop.value}</td>

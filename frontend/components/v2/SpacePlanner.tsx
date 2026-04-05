@@ -82,7 +82,7 @@ export default function SpacePlanner() {
       <div className="bg-v2-surface border border-v2-border rounded-lg p-12 text-center max-w-lg mx-auto">
         <p className="font-v2-heading text-4xl text-v2-text mb-4">We have it.</p>
         <p className="text-v2-muted text-sm leading-relaxed mb-6">
-          Your {room} plan has been noted. Our team will call within 24 hours to discuss your {style?.toLowerCase()} finish in {material}.
+          Your {room} plan has been saved. Our team will be in touch within 24 hours to discuss your {style?.toLowerCase()} finish in {material}.
         </p>
         <p className="text-xs font-v2-mono text-v2-accent">Estimated timeline: 15–21 working days</p>
       </div>
@@ -218,7 +218,7 @@ export default function SpacePlanner() {
             />
             <button
               onClick={handleSubmit}
-              disabled={!contact.name || !contact.phone || submitting}
+              disabled={!contact.name || !contact.phone || !contact.city || submitting}
               className="w-full bg-v2-accent text-v2-surface py-3 rounded text-sm font-medium hover:bg-v2-text transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {submitting ? 'Sending...' : 'Request Consultation →'}
