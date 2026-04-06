@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  @apply font-inter text-charcoal bg-parchment;
+  @apply font-inter text-charcoal-black bg-parchment;
 }
 
 /* Typography */
@@ -40,11 +40,11 @@ a {
 }
 
 .btn-secondary {
-  @apply px-lg py-md bg-sandstone text-slate font-bold rounded-sm hover:bg-sandstone-dark focus:outline-none focus:ring-2 focus:ring-sandstone focus:ring-offset-2 transition-all duration-200;
+  @apply px-lg py-md bg-sandstone text-slate font-bold rounded-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-sandstone focus:ring-offset-2 transition-all duration-200;
 }
 
 .btn-outline {
-  @apply px-lg py-md border-2 border-moduwood text-moduwood font-bold rounded-sm hover:bg-parchment-light focus:outline-none focus:ring-2 focus:ring-moduwood focus:ring-offset-2 transition-all duration-200;
+  @apply px-lg py-md border-2 border-moduwood text-moduwood font-bold rounded-sm hover:bg-parchment focus:outline-none focus:ring-2 focus:ring-moduwood focus:ring-offset-2 transition-all duration-200;
 }
 
 /* Card Styles */
@@ -54,7 +54,7 @@ a {
 
 /* Form Styles */
 input, textarea, select {
-  @apply border border-gray-300 rounded-sm px-md py-sm font-inter text-charcoal focus:outline-none focus:ring-2 focus:ring-moduwood focus:border-transparent transition-all duration-200;
+  @apply border border-gray-300 rounded-sm px-md py-sm font-inter text-charcoal-black focus:outline-none focus:ring-2 focus:ring-moduwood focus:border-transparent transition-all duration-200;
 }
 
 input:disabled, textarea:disabled, select:disabled {
