@@ -120,20 +120,52 @@ Condensed heritage narrative with team focus, mission statement, and the "Why Mo
 - Dual view mode via prop: `mode="technical"` (for Architects) | `mode="aesthetic"` (for Homeowners)
 - Data source: local `frontend/data/materials.ts` config — no component changes needed to add materials
 
+**Data Schema (`frontend/data/materials.ts`):**
+```typescript
+export interface MaterialProperty {
+  label: string;      // e.g. "Thickness"
+  value: string;      // e.g. "18mm"
+}
+
+export interface Material {
+  id: string;                   // e.g. "bwp-plywood"
+  name: string;                 // e.g. "BWP Plywood"
+  grade: string;                // e.g. "IS:710"
+  swatchColor: string;          // hex, e.g. "#C8A96E"
+  shortDescription: string;     // 1-2 sentences, aesthetic tone
+  technicalDescription: string; // 1-2 sentences, spec tone
+  properties: MaterialProperty[]; // shown in technical mode
+  badge: string;                // e.g. "Marine Grade"
+}
+
+export const materials: Material[] = [ ... ]
+```
+
+The `mode` prop controls which description and whether `properties` are shown:
+- `mode="technical"`: shows `technicalDescription` + `properties` array
+- `mode="aesthetic"`: shows `shortDescription` only, no properties table
+
 **Material entries to include:**
-| Material | Grade | Key Properties |
-|----------|-------|----------------|
-| BWP Plywood | IS:710 | Boiling water resistant, marine grade |
-| HDHMR | High Density | Moisture resistant, screw-holding strength |
-| Teak Wood | A-grade | Natural oils, termite resistant |
-| Acrylic Finish | UV-coated | High gloss, scratch resistant |
-| Hardware | Hettich/Hafele | German-grade hinges and channels |
+| Material | Grade | Badge | Swatch |
+|----------|-------|-------|--------|
+| BWP Plywood | IS:710 | Marine Grade | `#C8A96E` |
+| HDHMR | High Density | Moisture Resistant | `#A0856A` |
+| Teak Wood | A-grade | Termite Resistant | `#8B6542` |
+| Acrylic Finish | UV-coated | High Gloss | `#E8E4DF` |
+| Hardware | Hettich/Hafele | German Grade | `#9B9B9B` |
 
 ### `ProcessTimeline.tsx`
 - 5-step timeline: Material Selection → CNC Cutting → Edge Banding → Cold Press Assembly → Precision Installation
 - Desktop: horizontal scroll; Mobile: vertical stacked
 - Each step: icon, title, 2-line description, "Why this matters" callout
 - Step connector line animates in on scroll via `IntersectionObserver`
+
+**Animation details:**
+- Trigger: when the timeline section enters the viewport (threshold: 0.3)
+- Connector line: CSS width transition from `0%` to `100%`, duration `800ms`, easing `ease-out`
+- Individual step cards: fade-in with `opacity 0→1` + `translateY 12px→0`, staggered by `100ms` per step
+- Mobile: animation disabled (vertical layout, no connector line) — use simple `opacity` fade only
+- No animation libraries — pure CSS transitions triggered by adding a class via `IntersectionObserver`
 
 ### `SpacePlanner.tsx`
 4-step guided quiz with progress bar:
@@ -149,10 +181,33 @@ Condensed heritage narrative with team focus, mission statement, and the "Why Mo
 - On submit: stores to `localStorage` + fires `fetch` to contact endpoint
 - Confirmation screen: estimated timeline + "We'll call within 24 hours"
 
+**Submission payload:**
+```typescript
+interface SpacePlannerSubmission {
+  room: "Kitchen" | "Wardrobe" | "Living Unit" | "Study";
+  style: "Minimal" | "Warm Wood" | "Contemporary" | "Industrial";
+  material: "BWP Plywood" | "HDHMR" | "Acrylic" | "Veneer";
+  name: string;
+  phone: string;
+  city: string;
+  notes: string;
+  source: "space-planner";         // distinguishes from /v2/contact form
+  professionalType: "Homeowner";   // auto-set; SpacePlanner is homeowner flow only
+}
+```
+
+Posted to the same contact endpoint as `/v2/contact`. The `source` field lets the backend distinguish between a SpacePlanner lead and a direct contact form submission.
+
 ### `V2Layout.tsx`
 - Nav: Logo left, links right — "For Architects" / "For Homeowners" / "Our Heritage" / "Contact"
-- Mobile: hamburger menu
 - Footer: address (VKIA, Jaipur), parent company credit (Shri Ram Timber & Plywood), WhatsApp CTA
+
+**Mobile navigation:**
+- Breakpoint: below `md` (768px) — desktop links hidden, hamburger icon shown
+- Menu type: full-width overlay (not a drawer) with semi-transparent backdrop (`bg-[#1A1A18]/80`)
+- Menu contains: same 4 links stacked vertically, centered, large type (`text-2xl`)
+- Hamburger: 3-line icon, animates to X on open — pure CSS transition, no library
+- Close on: link click or backdrop click
 
 ---
 
@@ -169,6 +224,13 @@ Condensed heritage narrative with team focus, mission statement, and the "Why Mo
 - Open Graph tags on all pages
 - `robots.txt` and `sitemap.xml` updated to include `/v2` routes
 - Canonical URLs set to `/v2` equivalents
+
+**SEO Implementation:**
+- Use Next.js `<Head>` component (already in use in existing pages) — no additional SEO library needed
+- Create `frontend/components/v2/V2Meta.tsx` — a shared component that accepts `title`, `description`, `canonical`, `ogImage` props and renders the full `<Head>` block. Every `/v2` page imports this.
+- `robots.txt`: add `/v2/*` to `Allow` — update `frontend/public/robots.txt`
+- `sitemap.xml`: add all 6 `/v2` routes — update `frontend/public/sitemap.xml`
+- Google Fonts (`Cormorant Garamond`, `Inter`, `JetBrains Mono`) loaded in `frontend/pages/v2/_document.tsx` via `<link>` preload — scoped to v2, does not affect existing pages
 
 ---
 

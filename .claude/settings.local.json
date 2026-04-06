@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/VivoBook/.config/superpowers/worktrees/Moducraft-website/feature-v2-redesign/frontend/**)",
+      "Bash(npm run:*)"
+    ]
+  }
+}
